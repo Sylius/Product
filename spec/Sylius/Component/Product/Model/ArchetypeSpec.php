@@ -14,20 +14,21 @@ namespace spec\Sylius\Component\Product\Model;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Product\Model\AttributeInterface;
+use Sylius\Component\Product\Model\ArchetypeInterface;
 
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class PrototypeSpec extends ObjectBehavior
+class ArchetypeSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Sylius\Component\Product\Model\Prototype');
+        $this->shouldHaveType('Sylius\Component\Product\Model\Archetype');
     }
 
-    function it_implements_Sylius_product_prototype_interface()
+    function it_implements_Sylius_product_archetype_interface()
     {
-        $this->shouldImplement('Sylius\Component\Product\Model\PrototypeInterface');
+        $this->shouldImplement('Sylius\Component\Product\Model\ArchetypeInterface');
     }
 
     function it_has_no_id_by_default()
@@ -96,6 +97,18 @@ class PrototypeSpec extends ObjectBehavior
 
         $this->setUpdatedAt($date);
         $this->getUpdatedAt()->shouldReturn($date);
+    }
+
+    function it_has_no_parent_by_default()
+    {
+        $this->hasParent()->shouldReturn(false);
+    }
+
+    function its_parent_is_mutable(ArchetypeInterface $parent)
+    {
+        $this->setParent($parent);
+        $this->getParent()->shouldReturn($parent);
+        $this->hasParent()->shouldReturn(true);
     }
 
     function it_has_fluent_interface(Collection $attributes, AttributeInterface $attribute)
