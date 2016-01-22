@@ -17,6 +17,6 @@ use Sylius\Component\Association\Model\Association;
  * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
  */
-class ProductAssociation extends Association implements AssociationInterface
+class ProductAssociation extends Association implements ProductAssociationInterface
 {
 }

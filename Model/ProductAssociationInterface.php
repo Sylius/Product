@@ -16,6 +16,6 @@ use Sylius\Component\Association\Model\AssociationInterface as BaseAssociationIn
 /**
  * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
  */
-interface AssociationInterface extends BaseAssociationInterface
+interface ProductAssociationInterface extends BaseAssociationInterface
 {
 }
