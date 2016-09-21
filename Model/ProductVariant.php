@@ -18,7 +18,7 @@ use Sylius\Component\Resource\Model\TimestampableTrait;
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class Variant implements VariantInterface
+class ProductVariant implements ProductVariantInterface
 {
     use TimestampableTrait;
 
@@ -43,7 +43,7 @@ class Variant implements VariantInterface
     protected $product;
 
     /**
-     * @var Collection|OptionValueInterface[]
+     * @var Collection|ProductOptionValueInterface[]
      */
     protected $options;
 
@@ -124,7 +124,7 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function addOption(OptionValueInterface $option)
+    public function addOption(ProductOptionValueInterface $option)
     {
         if (!$this->hasOption($option)) {
             $this->options->add($option);
@@ -134,7 +134,7 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function removeOption(OptionValueInterface $option)
+    public function removeOption(ProductOptionValueInterface $option)
     {
         if ($this->hasOption($option)) {
             $this->options->removeElement($option);
@@ -144,7 +144,7 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function hasOption(OptionValueInterface $option)
+    public function hasOption(ProductOptionValueInterface $option)
     {
         return $this->options->contains($option);
     }

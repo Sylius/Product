@@ -16,7 +16,7 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class OptionValue implements OptionValueInterface
+class ProductOptionValue implements ProductOptionValueInterface
 {
     use TranslatableTrait {
         __construct as private initializeTranslationCollection;
@@ -38,7 +38,7 @@ class OptionValue implements OptionValueInterface
     protected $value;
 
     /**
-     * @var OptionInterface
+     * @var ProductOptionInterface
      */
     protected $option;
 
@@ -90,7 +90,7 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
-    public function setOption(OptionInterface $option = null)
+    public function setOption(ProductOptionInterface $option = null)
     {
         $this->option = $option;
     }

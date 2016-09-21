@@ -12,18 +12,18 @@
 namespace Sylius\Component\Product\Repository;
 
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Sylius\Component\Product\Model\OptionInterface;
+use Sylius\Component\Product\Model\ProductOptionInterface;
 
 /**
  * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
  */
-interface OptionRepositoryInterface extends RepositoryInterface
+interface ProductOptionRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param string $name
      * @param string $locale
      *
-     * @return OptionInterface[]
+     * @return ProductOptionInterface[]
      */
     public function findByName($name, $locale);
 }

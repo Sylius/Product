@@ -17,6 +17,6 @@ use Sylius\Component\Attribute\Model\Attribute as BaseAttribute;
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  */
-class Attribute extends BaseAttribute implements AttributeInterface
+class ProductAttribute extends BaseAttribute implements ProductAttributeInterface
 {
 }

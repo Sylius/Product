@@ -16,6 +16,6 @@ use Sylius\Component\Attribute\Model\AttributeTranslationInterface as BaseAttrib
 /**
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  */
-interface AttributeTranslationInterface extends BaseAttributeTranslationInterface
+interface ProductAttributeTranslationInterface extends BaseAttributeTranslationInterface
 {
 }

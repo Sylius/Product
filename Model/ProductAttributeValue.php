@@ -16,7 +16,7 @@ use Sylius\Component\Attribute\Model\AttributeValue as BaseAttributeValue;
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class AttributeValue extends BaseAttributeValue implements AttributeValueInterface
+class ProductAttributeValue extends BaseAttributeValue implements ProductAttributeValueInterface
 {
     /**
      * {@inheritdoc}

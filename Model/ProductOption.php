@@ -20,7 +20,7 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  */
-class Option implements OptionInterface
+class ProductOption implements ProductOptionInterface
 {
     use TimestampableTrait;
     use TranslatableTrait {
@@ -45,7 +45,7 @@ class Option implements OptionInterface
     protected $name;
 
     /**
-     * @var Collection|OptionValueInterface[]
+     * @var Collection|ProductOptionValueInterface[]
      */
     protected $values;
 
@@ -124,7 +124,7 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function addValue(OptionValueInterface $value)
+    public function addValue(ProductOptionValueInterface $value)
     {
         if (!$this->hasValue($value)) {
             $value->setOption($this);
@@ -135,7 +135,7 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function removeValue(OptionValueInterface $value)
+    public function removeValue(ProductOptionValueInterface $value)
     {
         if ($this->hasValue($value)) {
             $this->values->removeElement($value);
@@ -146,7 +146,7 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function hasValue(OptionValueInterface $value)
+    public function hasValue(ProductOptionValueInterface $value)
     {
         return $this->values->contains($value);
     }

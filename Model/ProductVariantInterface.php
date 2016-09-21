@@ -19,7 +19,7 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-interface VariantInterface extends TimestampableInterface, ResourceInterface, CodeAwareInterface
+interface ProductVariantInterface extends TimestampableInterface, ResourceInterface, CodeAwareInterface
 {
     /**
      * This should be generated from option values
@@ -35,7 +35,7 @@ interface VariantInterface extends TimestampableInterface, ResourceInterface, Co
     public function setName($name);
 
     /**
-     * @return Collection|OptionValueInterface[]
+     * @return Collection|ProductOptionValueInterface[]
      */
     public function getOptions();
 
@@ -45,21 +45,21 @@ interface VariantInterface extends TimestampableInterface, ResourceInterface, Co
     public function setOptions(Collection $options);
 
     /**
-     * @param OptionValueInterface $option
+     * @param ProductOptionValueInterface $option
      */
-    public function addOption(OptionValueInterface $option);
+    public function addOption(ProductOptionValueInterface $option);
 
     /**
-     * @param OptionValueInterface $option
+     * @param ProductOptionValueInterface $option
      */
-    public function removeOption(OptionValueInterface $option);
+    public function removeOption(ProductOptionValueInterface $option);
 
     /**
-     * @param OptionValueInterface $option
+     * @param ProductOptionValueInterface $option
      *
      * @return bool
      */
-    public function hasOption(OptionValueInterface $option);
+    public function hasOption(ProductOptionValueInterface $option);
 
     /**
      * @return ProductInterface

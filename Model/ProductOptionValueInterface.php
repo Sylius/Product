@@ -18,17 +18,17 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-interface OptionValueInterface extends ResourceInterface, CodeAwareInterface, TranslatableInterface
+interface ProductOptionValueInterface extends ResourceInterface, CodeAwareInterface, TranslatableInterface
 {
     /**
-     * @return OptionInterface
+     * @return ProductOptionInterface
      */
     public function getOption();
 
     /**
-     * @param OptionInterface $option
+     * @param ProductOptionInterface $option
      */
-    public function setOption(OptionInterface $option = null);
+    public function setOption(ProductOptionInterface $option = null);
 
     /**
      * Get internal value.

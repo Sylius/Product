@@ -12,18 +12,18 @@
 namespace Sylius\Component\Product\Repository;
 
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Component\Product\Model\VariantInterface;
+use Sylius\Component\Product\Model\ProductVariantInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 /**
  * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
  */
-interface VariantRepositoryInterface extends RepositoryInterface
+interface ProductVariantRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param string $name
      *
-     * @return VariantInterface[]
+     * @return ProductVariantInterface[]
      */
     public function findByName($name);
 

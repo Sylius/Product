@@ -14,9 +14,9 @@ namespace Sylius\Component\Product\Model;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
 /**
- * @author Vincenzo Provenza <vincenzo.provenza89@gmail.com>
+ * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  */
-class OptionValueTranslation extends AbstractTranslation implements OptionValueTranslationInterface
+class ProductOptionTranslation extends AbstractTranslation implements ProductOptionTranslationInterface
 {
     /**
      * @var mixed
@@ -26,7 +26,7 @@ class OptionValueTranslation extends AbstractTranslation implements OptionValueT
     /**
      * @var string
      */
-    protected $value;
+    protected $name;
 
     /**
      * {@inheritdoc}
@@ -39,16 +39,16 @@ class OptionValueTranslation extends AbstractTranslation implements OptionValueT
     /**
      * {@inheritdoc}
      */
-    public function getValue()
+    public function getName()
     {
-        return $this->value;
+        return $this->name;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setValue($value)
+    public function setName($name)
     {
-        $this->value = $value;
+        $this->name = $name;
     }
 }

@@ -16,7 +16,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 /**
  * @author Vincenzo Provenza <vincenzo.provenza89@gmail.com>
  */
-interface OptionValueTranslationInterface extends ResourceInterface
+interface ProductOptionValueTranslationInterface extends ResourceInterface
 {
     /**
      * The name displayed to user.

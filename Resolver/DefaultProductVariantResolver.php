@@ -16,7 +16,7 @@ use Sylius\Component\Product\Model\ProductInterface;
 /**
  * @author Anna Walasek <anna.walasek@lakion.com>
  */
-final class DefaultVariantResolver implements VariantResolverInterface
+final class DefaultProductVariantResolver implements ProductVariantResolverInterface
 {
     /**
      * {@inheritdoc}

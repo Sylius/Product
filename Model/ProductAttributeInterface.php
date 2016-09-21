@@ -11,11 +11,11 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Attribute\Model\AttributeTranslation as BaseAttributeTranslation;
+use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
 
 /**
- * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class AttributeTranslation extends BaseAttributeTranslation
+interface ProductAttributeInterface extends BaseAttributeInterface
 {
 }

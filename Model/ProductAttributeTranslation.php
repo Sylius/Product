@@ -11,22 +11,11 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Attribute\Model\AttributeTranslation as BaseAttributeTranslation;
 
 /**
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  */
-interface OptionTranslationInterface extends ResourceInterface
+class ProductAttributeTranslation extends BaseAttributeTranslation implements ProductAttributeTranslationInterface
 {
-    /**
-     * The name displayed to user.
-     *
-     * @return string
-     */
-    public function getName();
-
-    /**
-     * @param string $name
-     */
-    public function setName($name);
 }

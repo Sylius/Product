@@ -22,16 +22,16 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-interface OptionInterface extends
+interface ProductOptionInterface extends
     CodeAwareInterface,
     TimestampableInterface,
-    OptionTranslationInterface,
+    ProductOptionTranslationInterface,
     TranslatableInterface
 {
     /**
      * Returns all option values.
      *
-     * @return Collection|OptionValueInterface[]
+     * @return Collection|ProductOptionValueInterface[]
      */
     public function getValues();
 
@@ -45,23 +45,23 @@ interface OptionInterface extends
     /**
      * Adds option value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param ProductOptionValueInterface $optionValue
      */
-    public function addValue(OptionValueInterface $optionValue);
+    public function addValue(ProductOptionValueInterface $optionValue);
 
     /**
      * Removes option value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param ProductOptionValueInterface $optionValue
      */
-    public function removeValue(OptionValueInterface $optionValue);
+    public function removeValue(ProductOptionValueInterface $optionValue);
 
     /**
      * Checks whether option has given value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param ProductOptionValueInterface $optionValue
      *
      * @return bool
      */
-    public function hasValue(OptionValueInterface $optionValue);
+    public function hasValue(ProductOptionValueInterface $optionValue);
 }

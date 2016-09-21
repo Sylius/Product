@@ -13,7 +13,7 @@ namespace Sylius\Component\Product\Generator;
 
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Product\Model\ProductInterface;
-use Sylius\Component\Product\Model\VariantInterface;
+use Sylius\Component\Product\Model\ProductVariantInterface;
 use Sylius\Component\Product\SetBuilder\SetBuilderInterface;
 
 /**
@@ -30,7 +30,7 @@ use Sylius\Component\Product\SetBuilder\SetBuilderInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class VariantGenerator implements VariantGeneratorInterface
+final class ProductVariantGenerator implements ProductVariantGeneratorInterface
 {
     /**
      * @var FactoryInterface
@@ -84,7 +84,7 @@ class VariantGenerator implements VariantGeneratorInterface
      * @param array $optionMap
      * @param mixed $permutation
      *
-     * @return VariantInterface
+     * @return ProductVariantInterface
      */
     protected function createVariant(ProductInterface $variable, array $optionMap, $permutation)
     {

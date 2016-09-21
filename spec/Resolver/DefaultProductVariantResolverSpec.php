@@ -13,30 +13,30 @@ namespace spec\Sylius\Component\Product\Resolver;
 
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Product\Model\ProductInterface;
-use Sylius\Component\Product\Resolver\DefaultVariantResolver;
+use Sylius\Component\Product\Resolver\DefaultProductVariantResolver;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Sylius\Component\Product\Model\VariantInterface;
-use Sylius\Component\Product\Resolver\VariantResolverInterface;
+use Sylius\Component\Product\Model\ProductVariantInterface;
+use Sylius\Component\Product\Resolver\ProductVariantResolverInterface;
 
 /**
  * @author Anna Walasek <anna.walasek@lakion.com>
  */
-final class DefaultVariantResolverSpec extends ObjectBehavior
+final class DefaultProductVariantResolverSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(DefaultVariantResolver::class);
+        $this->shouldHaveType(DefaultProductVariantResolver::class);
     }
 
     function it_implements_variant_resolver_interface()
     {
-        $this->shouldImplement(VariantResolverInterface::class);
+        $this->shouldImplement(ProductVariantResolverInterface::class);
     }
 
     function it_returns_first_variant(
         ProductInterface $product,
-        VariantInterface $variant,
+        ProductVariantInterface $variant,
         Collection $variants
     ) {
         $product->getVariants()->willReturn($variants);

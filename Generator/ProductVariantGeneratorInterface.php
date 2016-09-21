@@ -21,7 +21,7 @@ use Sylius\Component\Product\Model\ProductInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-interface VariantGeneratorInterface
+interface ProductVariantGeneratorInterface
 {
     /**
      * Generate all possible variants if they don't exist currently.

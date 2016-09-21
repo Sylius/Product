@@ -12,17 +12,17 @@
 namespace Sylius\Component\Product\Resolver;
 
 use Sylius\Component\Product\Model\ProductInterface;
-use Sylius\Component\Product\Model\VariantInterface;
+use Sylius\Component\Product\Model\ProductVariantInterface;
 
 /**
  * @author Anna Walasek <anna.walasek@lakion.com>
  */
-interface VariantResolverInterface
+interface ProductVariantResolverInterface
 {
     /**
      * @param ProductInterface $subject
      *
-     * @return VariantInterface
+     * @return ProductVariantInterface
      */
     public function getVariant(ProductInterface $subject);
 }
