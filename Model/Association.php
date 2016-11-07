@@ -12,42 +12,41 @@
 namespace Sylius\Component\Product\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
 /**
  * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
  */
-class ProductAssociation implements ProductAssociationInterface
+class Association implements AssociationInterface
 {
     use TimestampableTrait;
 
     /**
-     * @var mixed
+     * @var int
      */
     protected $id;
 
     /**
-     * @var ProductAssociationTypeInterface
+     * @var AssociationTypeInterface
      */
     protected $type;
 
     /**
-     * @var ProductInterface
+     * @var AssociableInterface
      */
     protected $owner;
 
     /**
-     * @var Collection|ProductInterface[]
+     * @var AssociableInterface[]
      */
-    protected $associatedProducts;
+    protected $associatedObjects;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
-        $this->associatedProducts = new ArrayCollection();
+        $this->associatedObjects = new ArrayCollection();
     }
 
     /**
@@ -69,7 +68,7 @@ class ProductAssociation implements ProductAssociationInterface
     /**
      * {@inheritdoc}
      */
-    public function setType(ProductAssociationTypeInterface $type)
+    public function setType(AssociationTypeInterface $type)
     {
         $this->type = $type;
     }
@@ -85,7 +84,7 @@ class ProductAssociation implements ProductAssociationInterface
     /**
      * {@inheritdoc}
      */
-    public function setOwner(ProductInterface $owner = null)
+    public function setOwner(AssociableInterface $owner = null)
     {
         $this->owner = $owner;
     }
@@ -93,36 +92,36 @@ class ProductAssociation implements ProductAssociationInterface
     /**
      * {@inheritdoc}
      */
-    public function getAssociatedProducts()
+    public function getAssociatedObjects()
     {
-        return $this->associatedProducts;
+        return $this->associatedObjects;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasAssociatedProduct(ProductInterface $product)
+    public function hasAssociatedObject(AssociableInterface $associatedObject)
     {
-        return $this->associatedProducts->contains($product);
+        return $this->associatedObjects->contains($associatedObject);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addAssociatedProduct(ProductInterface $product)
+    public function addAssociatedObject(AssociableInterface $associatedObject)
     {
-        if (!$this->hasAssociatedProduct($product)) {
-            $this->associatedProducts->add($product);
+        if (!$this->hasAssociatedObject($associatedObject)) {
+            $this->associatedObjects->add($associatedObject);
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removeAssociatedProduct(ProductInterface $product)
+    public function removeAssociatedObject(AssociableInterface $associatedObject)
     {
-        if ($this->hasAssociatedProduct($product)) {
-            $this->associatedProducts->removeElement($product);
+        if ($this->hasAssociatedObject($associatedObject)) {
+            $this->associatedObjects->removeElement($associatedObject);
         }
     }
 }
