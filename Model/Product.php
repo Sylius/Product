@@ -247,6 +247,34 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
+    public function hasAttributeByCode($attributeCode)
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($attribute->getAttribute()->getCode() === $attributeCode) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttributeByCode($attributeCode)
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($attribute->getAttribute()->getCode() === $attributeCode) {
+                return $attribute;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function hasAttribute(AttributeValueInterface $attribute)
     {
         return $this->attributes->contains($attribute);
