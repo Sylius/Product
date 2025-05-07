@@ -121,7 +121,7 @@ final class ProductTest extends TestCase
     {
         $this->productAttribute->expects($this->exactly(2))
                   ->method('setProduct')
-                  ->willReturnCallback(function ($arg) use (&$calls) {
+                  ->willReturnCallback(function ($arg) {
                       static $callIndex = 0;
                       $expectedArgs = [$this->product, null];
 
@@ -430,7 +430,7 @@ final class ProductTest extends TestCase
 
         $association->expects($this->exactly(2))
                     ->method('setOwner')
-                    ->willReturnCallback(function ($arg) use (&$calls) {
+                    ->willReturnCallback(function ($arg) {
                         static $callIndex = 0;
                         $expectedArgs = [$this->product, null];
 
