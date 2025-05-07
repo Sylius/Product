@@ -76,7 +76,7 @@ final class ProductOptionTest extends TestCase
 
     public function testCanHaveAValueAdded(): void
     {
-        /** @var ProductOptionValue|MockObject $valueMock */
+        /** @var ProductOptionValue&MockObject $valueMock */
         $valueMock = $this->createMock(ProductOptionValue::class);
         $this->productOption->addValue($valueMock);
         $this->assertTrue($this->productOption->hasValue($valueMock));
@@ -84,7 +84,7 @@ final class ProductOptionTest extends TestCase
 
     public function testCanHaveALocaleRemoved(): void
     {
-        /** @var ProductOptionValue|MockObject $valueMock */
+        /** @var ProductOptionValue&MockObject $valueMock */
         $valueMock = $this->createMock(ProductOptionValue::class);
         $this->productOption->addValue($valueMock);
         $this->productOption->removeValue($valueMock);

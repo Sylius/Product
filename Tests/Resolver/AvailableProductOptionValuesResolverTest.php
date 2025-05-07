@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Tests\Sylius\Component\Product\Resolver;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Error;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Product\Model\ProductInterface;
@@ -31,28 +30,23 @@ final class AvailableProductOptionValuesResolverTest extends TestCase
     private const PRODUCT_OPTION_CODE = 'PRODUCT_OPTION_CODE';
 
     /**
-     * @var ProductInterface|MockObject
+     * @var ProductInterface&MockObject
      */
 
     private MockObject $product;
 
     /**
-     * @var ProductOptionInterface|MockObject
+     * @var ProductOptionInterface&MockObject
      */
     private MockObject $productOption;
 
-    /**
-     * @var AvailableProductOptionValuesResolverInterface|MockObject
-     */
-    private MockObject $availableProductOptionValuesResolver;
+    private AvailableProductOptionValuesResolver $availableProductOptionValuesResolver;
 
     protected function setUp(): void
     {
-        $this->availableProductOptionValuesResolver = $this->createMock(AvailableProductOptionValuesResolverInterface::class);
+        $this->availableProductOptionValuesResolver = new AvailableProductOptionValuesResolver();
         $this->product = $this->createMock(ProductInterface::class);
         $this->productOption = $this->createMock(ProductOptionInterface::class);
-
-
         $this->product->method('getCode')->willReturn(self::PRODUCT_CODE);
         $this->productOption->method('getCode')->willReturn(self::PRODUCT_OPTION_CODE);
     }
@@ -64,13 +58,12 @@ final class AvailableProductOptionValuesResolverTest extends TestCase
 
     public function testThrowsIfOptionDoesNotBelongToProduct(): void
     {
-        $this->product->expects($this->once())
+        $this->product->expects($this->atLeastOnce())
                       ->method('hasOption')
                       ->with($this->productOption)
                       ->willReturn(false);
         $this->assertFalse($this->product->hasOption($this->productOption));
-        $this->expectException(Error::class);
-        $this->availableProductOptionValuesResolver->expectExceptionMessage(sprintf(
+        $this->expectExceptionMessage(sprintf(
             'Cannot resolve available product option values. Option "%s" does not belong to product "%s".',
             self::PRODUCT_OPTION_CODE,
             self::PRODUCT_CODE,

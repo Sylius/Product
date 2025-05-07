@@ -14,9 +14,11 @@ declare(strict_types=1);
 namespace Tests\Sylius\Component\Product\Model;
 
 use DateTimeImmutable;
+use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Attribute\Model\AttributeInterface;
+use Sylius\Component\Attribute\Model\AttributeValueInterface;
 use Sylius\Component\Product\Model\Product;
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 use Sylius\Component\Product\Model\ProductAttributeValueInterface;
@@ -24,43 +26,25 @@ use Sylius\Component\Product\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductOptionInterface;
 use Sylius\Component\Product\Model\ProductVariantInterface;
 use Sylius\Resource\Model\ToggleableInterface;
-use TypeError;
-use function PHPUnit\Framework\assertTrue;
 
 final class ProductTest extends TestCase
 {
     /**
-     * @var ProductAttributeValueInterface|MockObject
+     * @var ProductAttributeValueInterface&MockObject
      */
     private MockObject $productAttribute;
 
-    /**
-     * @var ProductInterface|MockObject
-     */
-    private MockObject $productMock;
 
     private Product $product;
 
     /**
-     * @var AttributeInterface|MockObject
+     * @var AttributeInterface&MockObject
      */
     private MockObject $attribute;
 
-//
-//    /**
-//     * @var ToggleableInterface|MockObject
-//     */
-//    private MockObject $toggleableInterface;
-
-//    private Product $product;
-
     protected function setUp(): void
     {
-//        $this->productInterface = $this->createMock(ProductInterface::class);
-//        $this->toggleableInterface = $this->createMock(ToggleableInterface::class);
         $this->productAttribute = $this->createMock(ProductAttributeValueInterface::class);
-//        $this->product = $this->createMock(ProductInterface::class);
-        $this->productMock = $this->createMock(ProductInterface::class);
         $this->product = new Product();
         $this->product->setCurrentLocale('en_US');
         $this->product->setFallbackLocale('en_US');
@@ -151,22 +135,22 @@ final class ProductTest extends TestCase
 
     public function testRefusesToAddNonProductAttribute(): void
     {
-        $nonProductAttribute = $this->createMock(ProductAssociationInterface::class);
+        $attributeValue = $this->createMock(AttributeValueInterface::class);
 
-        $this->expectException(TypeError::class);
+        $this->expectException(InvalidArgumentException::class);
 
-        $this->product->addAttribute($nonProductAttribute);
+        $this->product->addAttribute(null);
 
-        $this->assertFalse($this->product->hasAttribute($nonProductAttribute));
+        $this->assertFalse($this->product->hasAttribute($attributeValue));
     }
 
     public function testRefusesToRemoveNonProductAttribute(): void
     {
-        $nonProductAttribute = $this->createMock(ProductAssociationInterface::class);
+        $attributeValue = $this->createMock(AttributeValueInterface::class);
 
-        $this->expectException(TypeError::class);
+        $this->expectException(InvalidArgumentException::class);
 
-        $this->product->removeAttribute($nonProductAttribute);
+        $this->product->removeAttribute($attributeValue);
     }
 
     public function testReturnsAttributesByALocaleWithoutABaseLocale(): void
@@ -415,7 +399,7 @@ final class ProductTest extends TestCase
 
     public function testEnabledByDefault(): void
     {
-        self::assertTrue($this->product->isEnabled());
+        $this->assertTrue($this->product->isEnabled());
     }
 
     public function testToggleable(): void
@@ -424,7 +408,7 @@ final class ProductTest extends TestCase
         self::assertFalse($this->product->isEnabled());
 
         $this->product->enable();
-        assertTrue($this->product->isEnabled());
+        $this->assertTrue($this->product->isEnabled());
     }
 
     public function testAddsAssociation(): void
@@ -465,7 +449,8 @@ final class ProductTest extends TestCase
         $this->assertFalse($this->product->isConfigurable());
     }
 
-    public function testConfigurableIfItHasAtLeastTwoVariants(): void {
+    public function testConfigurableIfItHasAtLeastTwoVariants(): void
+    {
         $firstVariant  = $this->createMock(ProductVariantInterface::class);
 
         $firstVariant->expects($this->once())->method('setProduct')->with($this->product);
@@ -480,7 +465,8 @@ final class ProductTest extends TestCase
         $this->assertFalse($this->product->isSimple());
     }
 
-    public function testConfigurableIfItHasOneVariantAndAtLeastOneOption(): void {
+    public function testConfigurableIfItHasOneVariantAndAtLeastOneOption(): void
+    {
         $variant  = $this->createMock(ProductVariantInterface::class);
         $option = $this->createMock(ProductOptionInterface::class);
 

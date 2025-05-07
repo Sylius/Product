@@ -47,7 +47,7 @@ final class ProductVariantTest extends TestCase
 
     public function testAddsAnOptionValue(): void
     {
-        /** @var ProductOptionValueInterface|MockObject $optionValueMock */
+        /** @var ProductOptionValueInterface&MockObject $optionValueMock */
         $optionValueMock = $this->createMock(ProductOptionValueInterface::class);
         $this->productVariant->addOptionValue($optionValueMock);
         $this->assertTrue($this->productVariant->hasOptionValue($optionValueMock));
@@ -55,7 +55,7 @@ final class ProductVariantTest extends TestCase
 
     public function testRemovesAnOptionValue(): void
     {
-        /** @var ProductOptionValueInterface|MockObject $optionValueMock */
+        /** @var ProductOptionValueInterface&MockObject $optionValueMock */
         $optionValueMock = $this->createMock(ProductOptionValueInterface::class);
         $this->productVariant->addOptionValue($optionValueMock);
         $this->productVariant->removeOptionValue($optionValueMock);

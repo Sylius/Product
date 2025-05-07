@@ -25,17 +25,18 @@ use Sylius\Component\Product\Generator\ProductVariantGeneratorInterface;
 use Sylius\Component\Product\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductOptionInterface;
 use Sylius\Component\Product\Model\ProductOptionValueInterface;
+use Sylius\Component\Product\Model\ProductVariant;
 use Sylius\Component\Product\Model\ProductVariantInterface;
 
 final class ProductVariantGeneratorTest extends TestCase
 {
     /**
-     * @var ProductVariantFactoryInterface|MockObject
+     * @var ProductVariantFactoryInterface<ProductVariant>&MockObject
      */
     private MockObject $productVariantFactoryMock;
 
     /**
-     * @var ProductVariantsParityCheckerInterface|MockObject
+     * @var ProductVariantsParityCheckerInterface&MockObject
      */
     private MockObject $variantsParityCheckerMock;
 
@@ -58,7 +59,7 @@ final class ProductVariantGeneratorTest extends TestCase
 
     public function testThrowsAnExceptionIfProductHasNoOptions(): void
     {
-        /** @var ProductInterface|MockObject $productMock */
+        /** @var ProductInterface&MockObject $productMock */
         $productMock = $this->createMock(ProductInterface::class);
         $productMock->expects($this->once())->method('hasOptions')->willReturn(false);
         $this->expectException(ProductWithoutOptionsException::class);
@@ -67,9 +68,9 @@ final class ProductVariantGeneratorTest extends TestCase
 
     public function testThrowsAnExceptionIfProductHasNoOptionsValues(): void
     {
-        /** @var ProductInterface|MockObject $productMock */
+        /** @var ProductInterface&MockObject $productMock */
         $productMock = $this->createMock(ProductInterface::class);
-        /** @var ProductOptionInterface|MockObject $colorOptionMock */
+        /** @var ProductOptionInterface&MockObject $colorOptionMock */
         $colorOptionMock = $this->createMock(ProductOptionInterface::class);
         $productMock->expects($this->once())->method('hasOptions')->willReturn(true);
         $productMock->expects($this->once())->method('getOptions')->willReturn(new ArrayCollection([$colorOptionMock]));
@@ -80,17 +81,17 @@ final class ProductVariantGeneratorTest extends TestCase
 
     public function testGeneratesVariantsForEveryValueOfAnObjectsSingleOption(): void
     {
-        /** @var ProductInterface|MockObject $productVariableMock */
+        /** @var ProductInterface&MockObject $productVariableMock */
         $productVariableMock = $this->createMock(ProductInterface::class);
-        /** @var ProductOptionInterface|MockObject $colorOptionMock */
+        /** @var ProductOptionInterface&MockObject $colorOptionMock */
         $colorOptionMock = $this->createMock(ProductOptionInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $blackColorMock */
+        /** @var ProductOptionValueInterface&MockObject $blackColorMock */
         $blackColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $redColorMock */
+        /** @var ProductOptionValueInterface&MockObject $redColorMock */
         $redColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $whiteColorMock */
+        /** @var ProductOptionValueInterface&MockObject $whiteColorMock */
         $whiteColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductVariantInterface|MockObject $permutationVariantMock */
+        /** @var ProductVariantInterface&MockObject $permutationVariantMock */
         $permutationVariantMock = $this->createMock(ProductVariantInterface::class);
 
         $productVariableMock->expects($this->once())->method('hasOptions')->willReturn(true);
@@ -120,17 +121,17 @@ final class ProductVariantGeneratorTest extends TestCase
 
     public function testDoesNotGenerateVariantIfGivenVariantExists(): void
     {
-        /** @var ProductInterface|MockObject $productVariableMock */
+        /** @var ProductInterface&MockObject $productVariableMock */
         $productVariableMock = $this->createMock(ProductInterface::class);
-        /** @var ProductOptionInterface|MockObject $colorOptionMock */
+        /** @var ProductOptionInterface&MockObject $colorOptionMock */
         $colorOptionMock = $this->createMock(ProductOptionInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $blackColorMock */
+        /** @var ProductOptionValueInterface&MockObject $blackColorMock */
         $blackColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $redColorMock */
+        /** @var ProductOptionValueInterface&MockObject $redColorMock */
         $redColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $whiteColorMock */
+        /** @var ProductOptionValueInterface&MockObject $whiteColorMock */
         $whiteColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductVariantInterface|MockObject $permutationVariantMock */
+        /** @var ProductVariantInterface&MockObject $permutationVariantMock */
         $permutationVariantMock = $this->createMock(ProductVariantInterface::class);
         $productVariableMock->expects($this->once())->method('hasOptions')->willReturn(true);
         $productVariableMock->expects($this->once())
@@ -159,25 +160,25 @@ final class ProductVariantGeneratorTest extends TestCase
 
     public function testGeneratesVariantsForEveryPossiblePermutationOfAnObjectsOptionsAndOptionValues(): void
     {
-        /** @var ProductInterface|MockObject $productVariableMock */
+        /** @var ProductInterface&MockObject $productVariableMock */
         $productVariableMock = $this->createMock(ProductInterface::class);
-        /** @var ProductOptionInterface|MockObject $colorOptionMock */
+        /** @var ProductOptionInterface&MockObject $colorOptionMock */
         $colorOptionMock = $this->createMock(ProductOptionInterface::class);
-        /** @var ProductOptionInterface|MockObject $sizeOptionMock */
+        /** @var ProductOptionInterface&MockObject $sizeOptionMock */
         $sizeOptionMock = $this->createMock(ProductOptionInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $blackColorMock */
+        /** @var ProductOptionValueInterface&MockObject $blackColorMock */
         $blackColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $largeSizeMock */
+        /** @var ProductOptionValueInterface&MockObject $largeSizeMock */
         $largeSizeMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $mediumSizeMock */
+        /** @var ProductOptionValueInterface&MockObject $mediumSizeMock */
         $mediumSizeMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $redColorMock */
+        /** @var ProductOptionValueInterface&MockObject $redColorMock */
         $redColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $smallSizeMock */
+        /** @var ProductOptionValueInterface&MockObject $smallSizeMock */
         $smallSizeMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductOptionValueInterface|MockObject $whiteColorMock */
+        /** @var ProductOptionValueInterface&MockObject $whiteColorMock */
         $whiteColorMock = $this->createMock(ProductOptionValueInterface::class);
-        /** @var ProductVariantInterface|MockObject $permutationVariantMock */
+        /** @var ProductVariantInterface&MockObject $permutationVariantMock */
         $permutationVariantMock = $this->createMock(ProductVariantInterface::class);
         $productVariableMock->expects($this->once())->method('hasOptions')->willReturn(true);
         $productVariableMock->expects($this->once())->method('getOptions')->willReturn(

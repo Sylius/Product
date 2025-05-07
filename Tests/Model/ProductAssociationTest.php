@@ -23,7 +23,7 @@ use Sylius\Component\Product\Model\ProductInterface;
 final class ProductAssociationTest extends TestCase
 {
     /**
-     * @var ProductAssociationInterface|MockObject
+     * @var ProductAssociationInterface&MockObject
      */
     private MockObject $productAssociationInterface;
 
@@ -42,7 +42,7 @@ final class ProductAssociationTest extends TestCase
 
     public function testHasOwner(): void
     {
-        /** @var ProductInterface|MockObject $productMock */
+        /** @var ProductInterface&MockObject $productMock */
         $productMock = $this->createMock(ProductInterface::class);
         $this->productAssociation->setOwner($productMock);
         $this->assertSame($productMock, $this->productAssociation->getOwner());
@@ -50,7 +50,7 @@ final class ProductAssociationTest extends TestCase
 
     public function testHasType(): void
     {
-        /** @var ProductAssociationType|MockObject $associationTypeMock */
+        /** @var ProductAssociationType&MockObject $associationTypeMock */
         $associationTypeMock = $this->createMock(ProductAssociationType::class);
         $this->productAssociation->setType($associationTypeMock);
         $this->assertSame($associationTypeMock, $this->productAssociation->getType());
@@ -58,7 +58,7 @@ final class ProductAssociationTest extends TestCase
 
     public function testAddsAssociationProduct(): void
     {
-        /** @var ProductInterface|MockObject $productMock */
+        /** @var ProductInterface&MockObject $productMock */
         $productMock = $this->createMock(ProductInterface::class);
         $this->productAssociation->addAssociatedProduct($productMock);
         $this->assertCount(1, $this->productAssociation->getAssociatedProducts());
@@ -66,7 +66,7 @@ final class ProductAssociationTest extends TestCase
 
     public function testChecksIfProductIsAssociated(): void
     {
-        /** @var ProductInterface|MockObject $productMock */
+        /** @var ProductInterface&MockObject $productMock */
         $productMock = $this->createMock(ProductInterface::class);
         $this->assertFalse($this->productAssociation->hasAssociatedProduct($productMock));
         $this->productAssociation->addAssociatedProduct($productMock);

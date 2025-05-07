@@ -21,7 +21,7 @@ use Sylius\Component\Product\Model\ProductAssociationTypeTranslationInterface;
 final class ProductAssociationTypeTranslationTest extends TestCase
 {
     /**
-     * @var ProductAssociationTypeTranslationInterface|MockObject
+     * @var ProductAssociationTypeTranslationInterface&MockObject
      */
     private ProductAssociationTypeTranslationInterface $productAssociationTypeTranslationInterface;
 

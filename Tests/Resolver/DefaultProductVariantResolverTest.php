@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Product\Model\ProductInterface;
+use Sylius\Component\Product\Model\ProductVariant;
 use Sylius\Component\Product\Model\ProductVariantInterface;
 use Sylius\Component\Product\Repository\ProductVariantRepositoryInterface;
 use Sylius\Component\Product\Resolver\DefaultProductVariantResolver;
@@ -25,7 +26,7 @@ use Sylius\Component\Product\Resolver\ProductVariantResolverInterface;
 final class DefaultProductVariantResolverTest extends TestCase
 {
     /**
-     * @var ProductVariantRepositoryInterface|MockObject
+     * @var ProductVariantRepositoryInterface<ProductVariant>&MockObject
      */
     private MockObject $productVariantRepository;
 
