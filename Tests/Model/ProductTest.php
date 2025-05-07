@@ -121,10 +121,13 @@ final class ProductTest extends TestCase
     {
         $this->productAttribute->expects($this->exactly(2))
                   ->method('setProduct')
-                  ->withConsecutive(
-                      [$this->product],
-                      [null],
-                  );
+                  ->willReturnCallback(function ($arg) use (&$calls) {
+                      static $callIndex = 0;
+                      $expectedArgs = [$this->product, null];
+
+                      TestCase::assertSame($expectedArgs[$callIndex], $arg);
+                      $callIndex++;
+                  });
 
         $this->product->addAttribute($this->productAttribute);
         $this->assertTrue($this->product->hasAttribute($this->productAttribute));
@@ -427,10 +430,13 @@ final class ProductTest extends TestCase
 
         $association->expects($this->exactly(2))
                     ->method('setOwner')
-                    ->withConsecutive(
-                        [$this->product],
-                        [$this->callback(fn($arg) => $arg === null)]
-                    );
+                    ->willReturnCallback(function ($arg) use (&$calls) {
+                        static $callIndex = 0;
+                        $expectedArgs = [$this->product, null];
+
+                        TestCase::assertSame($expectedArgs[$callIndex], $arg);
+                        $callIndex++;
+                    });
 
         $this->product->addAssociation($association);
         $this->product->removeAssociation($association);
