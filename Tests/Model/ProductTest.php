@@ -138,13 +138,9 @@ final class ProductTest extends TestCase
 
     public function testRefusesToAddNonProductAttribute(): void
     {
-        $attributeValue = $this->createMock(AttributeValueInterface::class);
-
         $this->expectException(InvalidArgumentException::class);
 
         $this->product->addAttribute(null);
-
-        $this->assertFalse($this->product->hasAttribute($attributeValue));
     }
 
     public function testRefusesToRemoveNonProductAttribute(): void
