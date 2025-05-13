@@ -23,11 +23,14 @@ final class ProductOptionTest extends TestCase
 {
     private ProductOption $productOption;
 
+    private ProductOptionValue&MockObject $productOptionValue;
+
     protected function setUp(): void
     {
         $this->productOption = new ProductOption();
         $this->productOption->setCurrentLocale('en_US');
         $this->productOption->setFallbackLocale('en_US');
+        $this->productOptionValue = $this->createMock(ProductOptionValue::class);
     }
 
     public function testHasNoIdByDefault(): void
@@ -76,18 +79,14 @@ final class ProductOptionTest extends TestCase
 
     public function testCanHaveAValueAdded(): void
     {
-        /** @var ProductOptionValue&MockObject $valueMock */
-        $valueMock = $this->createMock(ProductOptionValue::class);
-        $this->productOption->addValue($valueMock);
-        $this->assertTrue($this->productOption->hasValue($valueMock));
+        $this->productOption->addValue($this->productOptionValue);
+        $this->assertTrue($this->productOption->hasValue($this->productOptionValue));
     }
 
     public function testCanHaveALocaleRemoved(): void
     {
-        /** @var ProductOptionValue&MockObject $valueMock */
-        $valueMock = $this->createMock(ProductOptionValue::class);
-        $this->productOption->addValue($valueMock);
-        $this->productOption->removeValue($valueMock);
-        $this->assertFalse($this->productOption->hasValue($valueMock));
+        $this->productOption->addValue($this->productOptionValue);
+        $this->productOption->removeValue($this->productOptionValue);
+        $this->assertFalse($this->productOption->hasValue($this->productOptionValue));
     }
 }

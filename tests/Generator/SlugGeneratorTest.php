@@ -19,19 +19,16 @@ use Sylius\Component\Product\Generator\SlugGeneratorInterface;
 
 final class SlugGeneratorTest extends TestCase
 {
-    private SlugGeneratorInterface $slugGeneratorMock;
-
     private SlugGenerator $slugGenerator;
 
     protected function setUp(): void
     {
-        $this->slugGeneratorMock = $this->createMock(SlugGeneratorInterface::class);
         $this->slugGenerator = new SlugGenerator();
     }
 
     public function testImplementsSlugGeneratorInterface(): void
     {
-        self::assertInstanceOf(SlugGeneratorInterface::class, $this->slugGeneratorMock);
+        self::assertInstanceOf(SlugGeneratorInterface::class, $this->slugGenerator);
     }
 
     public function testGeneratesSlugBasedOnGivenName(): void

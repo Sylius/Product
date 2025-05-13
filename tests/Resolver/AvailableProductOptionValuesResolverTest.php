@@ -29,16 +29,9 @@ final class AvailableProductOptionValuesResolverTest extends TestCase
 
     private const PRODUCT_OPTION_CODE = 'PRODUCT_OPTION_CODE';
 
-    /**
-     * @var ProductInterface&MockObject
-     */
+    private ProductInterface&MockObject $product;
 
-    private MockObject $product;
-
-    /**
-     * @var ProductOptionInterface&MockObject
-     */
-    private MockObject $productOption;
+    private ProductOptionInterface&MockObject $productOption;
 
     private AvailableProductOptionValuesResolver $availableProductOptionValuesResolver;
 

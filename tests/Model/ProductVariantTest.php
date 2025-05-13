@@ -25,9 +25,12 @@ final class ProductVariantTest extends TestCase
 {
     private ProductVariant $productVariant;
 
+    private ProductOptionValueInterface&MockObject $optionValue;
+
     protected function setUp(): void
     {
         $this->productVariant = new ProductVariant();
+        $this->optionValue = $this->createMock(ProductOptionValueInterface::class);
     }
 
     public function testImplementsSyliusProductVariantInterface(): void
@@ -47,19 +50,15 @@ final class ProductVariantTest extends TestCase
 
     public function testAddsAnOptionValue(): void
     {
-        /** @var ProductOptionValueInterface&MockObject $optionValueMock */
-        $optionValueMock = $this->createMock(ProductOptionValueInterface::class);
-        $this->productVariant->addOptionValue($optionValueMock);
-        $this->assertTrue($this->productVariant->hasOptionValue($optionValueMock));
+        $this->productVariant->addOptionValue($this->optionValue);
+        $this->assertTrue($this->productVariant->hasOptionValue($this->optionValue));
     }
 
     public function testRemovesAnOptionValue(): void
     {
-        /** @var ProductOptionValueInterface&MockObject $optionValueMock */
-        $optionValueMock = $this->createMock(ProductOptionValueInterface::class);
-        $this->productVariant->addOptionValue($optionValueMock);
-        $this->productVariant->removeOptionValue($optionValueMock);
-        $this->assertFalse($this->productVariant->hasOptionValue($optionValueMock));
+        $this->productVariant->addOptionValue($this->optionValue);
+        $this->productVariant->removeOptionValue($this->optionValue);
+        $this->assertFalse($this->productVariant->hasOptionValue($this->optionValue));
     }
 
     public function testHasNoPositionByDefault(): void

@@ -22,15 +22,9 @@ use Sylius\Component\Product\Resolver\ProductVariantResolverInterface;
 
 final class CompositeProductVariantResolverTest extends TestCase
 {
-    /**
-     * @var ProductVariantResolverInterface&MockObject
-     */
-    private MockObject $firstResolver;
+    private ProductVariantResolverInterface&MockObject $firstResolver;
 
-    /**
-     * @var ProductVariantResolverInterface&MockObject
-     */
-    private MockObject $secondResolver;
+    private ProductVariantResolverInterface&MockObject $secondResolver;
 
     private CompositeProductVariantResolver $compositeProductVariantResolver;
 

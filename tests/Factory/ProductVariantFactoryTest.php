@@ -15,7 +15,6 @@ namespace Tests\Sylius\Component\Product\Factory;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Sylius\Component\Product\Factory\ProductFactory;
 use Sylius\Component\Product\Factory\ProductVariantFactory;
 use Sylius\Component\Product\Factory\ProductVariantFactoryInterface;
 use Sylius\Component\Product\Model\ProductInterface;
@@ -28,17 +27,20 @@ final class ProductVariantFactoryTest extends TestCase
     /**
      * @var FactoryInterface<ProductVariant>&MockObject
      */
-    private MockObject $factoryMock;
+    private MockObject $factory;
 
     /**
      * @var ProductVariantFactory<ProductVariantInterface>
      */
     private ProductVariantFactory $productVariantFactory;
 
+    private ProductVariantInterface&MockObject $variant;
+
     protected function setUp(): void
     {
-        $this->factoryMock = $this->createMock(FactoryInterface::class);
-        $this->productVariantFactory = new ProductVariantFactory($this->factoryMock);
+        $this->factory = $this->createMock(FactoryInterface::class);
+        $this->productVariantFactory = new ProductVariantFactory($this->factory);
+        $this->variant = $this->createMock(ProductVariantInterface::class);
     }
 
     public function testAResourceFactory(): void
@@ -53,20 +55,20 @@ final class ProductVariantFactoryTest extends TestCase
 
     public function testCreatesNewVariant(): void
     {
-        /** @var ProductVariantInterface&MockObject $variantMock */
-        $variantMock = $this->createMock(ProductVariantInterface::class);
-        $this->factoryMock->expects($this->once())->method('createNew')->willReturn($variantMock);
-        $this->assertSame($variantMock, $this->productVariantFactory->createNew());
+        $this->factory->expects($this->once())->method('createNew')->willReturn($this->variant);
+
+        $this->assertSame($this->variant, $this->productVariantFactory->createNew());
     }
 
     public function testCreatesAVariantAndAssignsAProductToIt(): void
     {
-        /** @var ProductInterface&MockObject $productMock */
-        $productMock = $this->createMock(ProductInterface::class);
-        /** @var ProductVariantInterface&MockObject $variantMock */
-        $variantMock = $this->createMock(ProductVariantInterface::class);
-        $this->factoryMock->expects($this->once())->method('createNew')->willReturn($variantMock);
-        $variantMock->expects($this->once())->method('setProduct')->with($productMock);
-        $this->assertSame($variantMock, $this->productVariantFactory->createForProduct($productMock));
+        /** @var ProductInterface&MockObject $product */
+        $product = $this->createMock(ProductInterface::class);
+
+        $this->factory->expects($this->once())->method('createNew')->willReturn($this->variant);
+
+        $this->variant->expects($this->once())->method('setProduct')->with($product);
+
+        $this->assertSame($this->variant, $this->productVariantFactory->createForProduct($product));
     }
 }

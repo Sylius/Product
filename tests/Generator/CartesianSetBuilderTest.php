@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Tests\Sylius\Component\Product\Generator;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Product\Generator\CartesianSetBuilder;
 
@@ -28,7 +27,7 @@ final class CartesianSetBuilderTest extends TestCase
 
     public function testRequiresAnArrayOfSetTuplesToBuildFrom(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $tupleSetNotInArray = ['a', 'b', 'c'];
         $this->builder->build($tupleSetNotInArray);
@@ -36,7 +35,7 @@ final class CartesianSetBuilderTest extends TestCase
 
     public function testRequiresAtLeastOneSetTuple(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $this->builder->build([]);
     }
