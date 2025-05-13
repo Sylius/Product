@@ -22,22 +22,19 @@ use Sylius\Component\Product\Model\ProductInterface;
 
 final class ProductAssociationTest extends TestCase
 {
-    private ProductAssociationInterface&MockObject $productAssociationInterface;
-
     private ProductAssociation $productAssociation;
 
     private ProductInterface&MockObject $product;
 
     protected function setUp(): void
     {
-        $this->productAssociationInterface = $this->createMock(ProductAssociationInterface::class);
         $this->productAssociation = new ProductAssociation();
         $this->product = $this->createMock(ProductInterface::class);
     }
 
     public function testImplementsProductAssociationInterface(): void
     {
-        self::assertInstanceOf(ProductAssociationInterface::class, $this->productAssociationInterface);
+        self::assertInstanceOf(ProductAssociationInterface::class, $this->productAssociation);
     }
 
     public function testHasOwner(): void

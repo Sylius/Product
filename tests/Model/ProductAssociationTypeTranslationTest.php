@@ -13,20 +13,16 @@ declare(strict_types=1);
 
 namespace Tests\Sylius\Component\Product\Model;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sylius\Component\Product\Model\ProductAssociationTypeTranslation;
 use Sylius\Component\Product\Model\ProductAssociationTypeTranslationInterface;
 
 final class ProductAssociationTypeTranslationTest extends TestCase
 {
-    private ProductAssociationTypeTranslationInterface&MockObject $productAssociationTypeTranslationInterface;
-
     private ProductAssociationTypeTranslation $productAssociationTypeTranslation;
 
     protected function setUp(): void
     {
-        $this->productAssociationTypeTranslationInterface = $this->createMock(ProductAssociationTypeTranslationInterface::class);
         $this->productAssociationTypeTranslation = new ProductAssociationTypeTranslation();
     }
 
@@ -34,7 +30,7 @@ final class ProductAssociationTypeTranslationTest extends TestCase
     {
         self::assertInstanceOf(
             ProductAssociationTypeTranslationInterface::class,
-            $this->productAssociationTypeTranslationInterface
+            $this->productAssociationTypeTranslation
         );
     }
 

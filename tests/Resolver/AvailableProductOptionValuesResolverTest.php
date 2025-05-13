@@ -51,16 +51,19 @@ final class AvailableProductOptionValuesResolverTest extends TestCase
 
     public function testThrowsIfOptionDoesNotBelongToProduct(): void
     {
-        $this->product->expects($this->atLeastOnce())
-                      ->method('hasOption')
-                      ->with($this->productOption)
-                      ->willReturn(false);
-        $this->assertFalse($this->product->hasOption($this->productOption));
+        $this->product
+            ->expects($this->atLeastOnce())
+            ->method('hasOption')
+            ->with($this->productOption)
+            ->willReturn(false)
+        ;
+
         $this->expectExceptionMessage(sprintf(
             'Cannot resolve available product option values. Option "%s" does not belong to product "%s".',
             self::PRODUCT_OPTION_CODE,
             self::PRODUCT_CODE,
         ));
+
         $this->availableProductOptionValuesResolver->resolve($this->product, $this->productOption);
     }
 
@@ -88,9 +91,7 @@ final class AvailableProductOptionValuesResolverTest extends TestCase
             [$productOptionValue2, false],
         ]);
 
-        $resolver = new AvailableProductOptionValuesResolver();
-
-        $result = $resolver->resolve($this->product, $this->productOption);
+        $result = $this->availableProductOptionValuesResolver->resolve($this->product, $this->productOption);
 
         $this->assertCount(1, $result);
         $this->assertSame($productOptionValue1, $result[0]);

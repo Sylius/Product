@@ -156,7 +156,8 @@ final class ProductTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $this->product->addAttribute(null);
+        $foreignAttribute = $this->createMock(AttributeValueInterface::class);
+        $this->product->addAttribute($foreignAttribute);
     }
 
     public function testRefusesToRemoveNonProductAttribute(): void
